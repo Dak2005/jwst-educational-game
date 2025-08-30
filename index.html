@@ -3,11 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JWST Educational Game - Complete Edition</title>
-    <meta name="description" content="Interactive educational game about the James Webb Space Telescope with 75+ questions, games, and achievements">
+    <title>JWST Educational Game - Explore the Universe</title>
+    <meta name="description" content="Interactive educational game about the James Webb Space Telescope featuring 75+ questions, telescope simulations, and space exploration challenges">
+    <meta name="keywords" content="JWST, James Webb Space Telescope, space education, astronomy quiz, NASA, space game">
+    <meta name="author" content="JWST Educational Game">
+    
+    <!-- Open Graph / Social Media Preview -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="JWST Educational Game - Explore the Universe">
+    <meta property="og:description" content="Interactive educational game about the James Webb Space Telescope with 75+ questions and space challenges">
+    <meta property="og:url" content="https://your-username.github.io/jwst-educational-game/">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="JWST Educational Game">
+    <meta name="twitter:description" content="Learn about space telescopes and astronomy through interactive gameplay">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='0.9em' font-size='90'%3E🔭%3C/text%3E%3C/svg%3E">
     
     <style>
-        /* EMBEDDED CSS - Complete styling for the game */
+        /* EMBEDDED CSS - Complete styling optimized for web deployment */
         :root {
             --color-primary: #1FB8CD;
             --color-primary-hover: #158fa0;
@@ -19,6 +35,8 @@
             --color-success: #28a745;
             --color-error: #dc3545;
             --color-warning: #ffc107;
+            --color-material: #9d4edd;
+            --color-material-hover: #7b2cbf;
         }
 
         * {
@@ -28,7 +46,7 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
             color: var(--color-text);
             min-height: 100vh;
@@ -65,7 +83,13 @@
                 550px 350px 0 white,
                 750px 500px 0 white,
                 950px 400px 0 white,
-                1150px 450px 0 white;
+                1150px 450px 0 white,
+                200px 600px 0 white,
+                400px 550px 0 white,
+                600px 650px 0 white,
+                800px 600px 0 white,
+                1000px 700px 0 white,
+                1200px 650px 0 white;
             animation: twinkle 3s infinite;
         }
 
@@ -118,7 +142,7 @@
         }
 
         h1 {
-            font-size: 3rem;
+            font-size: clamp(2rem, 5vw, 3.5rem);
             background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -127,13 +151,13 @@
         }
 
         h2 {
-            font-size: 1.5rem;
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
             color: var(--color-text-secondary);
             font-weight: 300;
         }
 
         .welcome-description {
-            font-size: 1.1rem;
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
             line-height: 1.6;
             max-width: 600px;
             color: var(--color-text-secondary);
@@ -153,6 +177,8 @@
             transition: all 0.3s ease;
             text-decoration: none;
             margin: 5px;
+            touch-action: manipulation;
+            user-select: none;
         }
 
         .btn--primary {
@@ -161,7 +187,7 @@
             box-shadow: 0 4px 15px rgba(31, 184, 205, 0.3);
         }
 
-        .btn--primary:hover {
+        .btn--primary:hover, .btn--primary:focus {
             transform: translateY(-2px);
             box-shadow: 0 8px 25px rgba(31, 184, 205, 0.4);
         }
@@ -172,7 +198,7 @@
             color: var(--color-primary);
         }
 
-        .btn--outline:hover {
+        .btn--outline:hover, .btn--outline:focus {
             background: var(--color-primary);
             color: white;
         }
@@ -192,24 +218,47 @@
             margin: 15px;
             transition: all 0.3s ease;
             cursor: pointer;
+            touch-action: manipulation;
         }
 
-        .card:hover {
+        .card:hover, .card:focus {
             transform: translateY(-5px);
             background: rgba(255, 255, 255, 0.08);
             border-color: var(--color-primary);
+        }
+
+        /* Special styling for Materials card */
+        .card.materials-card {
+            background: linear-gradient(135deg, rgba(157, 78, 221, 0.1), rgba(123, 44, 191, 0.05));
+            border-color: var(--color-material);
+        }
+
+        .card.materials-card:hover, .card.materials-card:focus {
+            border-color: var(--color-material-hover);
+            background: linear-gradient(135deg, rgba(157, 78, 221, 0.15), rgba(123, 44, 191, 0.08));
+        }
+
+        .card.materials-card h3 {
+            color: var(--color-material);
+        }
+
+        .external-link-indicator {
+            display: inline-block;
+            margin-left: 8px;
+            font-size: 0.8em;
+            opacity: 0.8;
         }
 
         .level-cards, .mode-cards {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 20px;
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
         }
 
         .level-content, .mode-content {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
         }
 
@@ -251,6 +300,8 @@
             background: #000;
             display: block;
             margin: 20px auto;
+            max-width: 100%;
+            height: auto;
         }
 
         /* Quiz styles */
@@ -268,9 +319,10 @@
             text-align: left;
             transition: all 0.3s ease;
             cursor: pointer;
+            touch-action: manipulation;
         }
 
-        .quiz-option:hover {
+        .quiz-option:hover, .quiz-option:focus {
             background: rgba(31, 184, 205, 0.1);
             border-color: var(--color-primary);
         }
@@ -340,7 +392,7 @@
         }
 
         .stat-value {
-            font-size: 3rem;
+            font-size: clamp(2rem, 5vw, 3rem);
             font-weight: bold;
             color: var(--color-primary);
         }
@@ -418,14 +470,11 @@
         .mt-20 { margin-top: 20px; }
         .hidden { display: none; }
 
-        /* Responsive */
+        /* Responsive design */
         @media (max-width: 768px) {
             .welcome-content {
                 padding: 20px;
-            }
-
-            h1 {
-                font-size: 2rem;
+                gap: 20px;
             }
 
             .jwst-logo {
@@ -441,21 +490,78 @@
                 text-align: center;
             }
 
+            .progress-container {
+                width: 100%;
+                max-width: 300px;
+            }
+
             .results-stats {
                 flex-direction: column;
                 align-items: center;
             }
+
+            .card {
+                padding: 20px;
+                margin: 10px;
+            }
+
+            canvas {
+                width: 100%;
+                max-width: 350px;
+                height: auto;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .btn {
+                font-size: 14px;
+                padding: 12px 24px;
+            }
+
+            .btn--lg {
+                font-size: 16px;
+                padding: 16px 32px;
+            }
+
+            .quiz-option {
+                padding: 15px;
+            }
+
+            .modal-content {
+                padding: 20px;
+                margin: 20px;
+            }
+        }
+
+        /* Loading state */
+        .loading {
+            opacity: 0.7;
+            pointer-events: none;
+        }
+
+        /* Focus styles for accessibility */
+        .btn:focus-visible,
+        .quiz-option:focus-visible,
+        .card:focus-visible {
+            outline: 2px solid var(--color-primary);
+            outline-offset: 2px;
+        }
+
+        /* Materials card focus style */
+        .materials-card:focus-visible {
+            outline: 2px solid var(--color-material);
+            outline-offset: 2px;
         }
     </style>
 </head>
 <body>
     <!-- Animated stars background -->
-    <div class="stars"></div>
+    <div class="stars" aria-hidden="true"></div>
 
     <!-- Welcome Screen -->
     <div id="welcome-screen" class="screen active">
         <div class="welcome-content">
-            <div class="jwst-logo">🔭</div>
+            <div class="jwst-logo" aria-hidden="true">🔭</div>
             <h1>JWST Educational Game</h1>
             <h2>Explore the Universe with Advanced Space Telescopes</h2>
             <p class="welcome-description">
@@ -464,7 +570,9 @@
             </p>
             
             <div class="welcome-buttons">
-                <button id="start-btn" class="btn btn--primary btn--lg">🚀 Start Exploration</button>
+                <button id="start-btn" class="btn btn--primary btn--lg" aria-label="Start the space exploration game">
+                    🚀 Start Exploration
+                </button>
             </div>
             
             <div class="total-score-display">
@@ -476,13 +584,13 @@
     <!-- Level Selection Screen -->
     <div id="level-screen" class="screen">
         <div class="level-content">
-            <button class="btn btn--outline mb-20" onclick="switchScreen('welcome-screen')">← Back</button>
+            <button class="btn btn--outline mb-20" onclick="switchScreen('welcome-screen')" aria-label="Go back to welcome screen">← Back</button>
             
             <h1 class="text-center mb-20">Choose Your Challenge Level</h1>
             <p class="text-center mb-20">Select the difficulty level that matches your space knowledge</p>
             
             <div class="level-cards">
-                <div class="card level-card" data-level="easy">
+                <div class="card level-card" data-level="easy" tabindex="0" role="button" aria-label="Easy level: Beginner Explorer">
                     <h3>🌟 Beginner Explorer</h3>
                     <p>Perfect for beginners</p>
                     <ul>
@@ -492,7 +600,7 @@
                     </ul>
                 </div>
                 
-                <div class="card level-card" data-level="medium">
+                <div class="card level-card" data-level="medium" tabindex="0" role="button" aria-label="Medium level: Space Enthusiast">
                     <h3>🌍 Space Enthusiast</h3>
                     <p>For space enthusiasts</p>
                     <ul>
@@ -502,13 +610,24 @@
                     </ul>
                 </div>
                 
-                <div class="card level-card" data-level="hard">
+                <div class="card level-card" data-level="hard" tabindex="0" role="button" aria-label="Hard level: Astronomy Expert">
                     <h3>🎓 Astronomy Expert</h3>
                     <p>For astronomy experts</p>
                     <ul>
                         <li>15 expert-level questions</li>
                         <li>Advanced astrophysics</li>
                         <li>25 points per correct answer</li>
+                    </ul>
+                </div>
+                
+                <div class="card materials-card" data-level="materials" tabindex="0" role="button" aria-label="Materials Learning Session: 30 Comprehensive Chapters">
+                    <h3>📚 Advanced Learning Session<span class="external-link-indicator">↗</span></h3>
+                    <p>Comprehensive space education</p>
+                    <ul>
+                        <li>30 detailed chapters</li>
+                        <li>NASA, telescopes, space exploration</li>
+                        <li>ISS, probes, satellites & more</li>
+                        <li>Complete learning experience</li>
                     </ul>
                 </div>
             </div>
@@ -518,28 +637,28 @@
     <!-- Mode Selection Screen -->
     <div id="mode-screen" class="screen">
         <div class="mode-content">
-            <button class="btn btn--outline mb-20" onclick="switchScreen('level-screen')">← Back</button>
+            <button class="btn btn--outline mb-20" onclick="switchScreen('level-screen')" aria-label="Go back to level selection">← Back</button>
             
             <h1 class="text-center mb-20">Choose Your Adventure</h1>
             <p class="text-center">Current Level: <span id="current-level">Easy</span> | Total Score: <span id="total-score-mode">0</span> points</p>
             
             <div class="mode-cards">
-                <div class="card mode-card" data-mode="quiz">
+                <div class="card mode-card" data-mode="quiz" tabindex="0" role="button" aria-label="Knowledge Quiz mode">
                     <h3>🧠 Knowledge Quiz</h3>
                     <p>Test your understanding with 10+ questions per session</p>
                 </div>
                 
-                <div class="card mode-card" data-mode="compare">
+                <div class="card mode-card" data-mode="compare" tabindex="0" role="button" aria-label="Telescope Comparison mode">
                     <h3>🔄 Telescope Comparison</h3>
                     <p>Compare images from different space telescopes</p>
                 </div>
                 
-                <div class="card mode-card" data-mode="focus">
+                <div class="card mode-card" data-mode="focus" tabindex="0" role="button" aria-label="Focus Challenge mode">
                     <h3>🎯 Focus Challenge</h3>
                     <p>Master telescope focusing techniques</p>
                 </div>
                 
-                <div class="card mode-card" data-mode="gallery">
+                <div class="card mode-card" data-mode="gallery" tabindex="0" role="button" aria-label="Cosmic Gallery mode">
                     <h3>🌌 Cosmic Gallery</h3>
                     <p>Explore spectacular cosmic objects</p>
                 </div>
@@ -550,22 +669,22 @@
     <!-- Quiz Game Screen -->
     <div id="quiz-screen" class="screen">
         <div class="game-content">
-            <button class="btn btn--outline mb-20" onclick="switchScreen('mode-screen')">← Back</button>
+            <button class="btn btn--outline mb-20" onclick="switchScreen('mode-screen')" aria-label="Go back to mode selection">← Back</button>
             
             <div class="game-header">
                 <div>
                     <h2>Space Knowledge Quiz</h2>
-                    <div id="quiz-question-number">Question 1 of 10</div>
+                    <div id="quiz-question-number" aria-live="polite">Question 1 of 10</div>
                 </div>
-                <div class="progress-container">
+                <div class="progress-container" role="progressbar" aria-label="Quiz progress">
                     <div id="quiz-progress" class="progress-bar"></div>
                 </div>
             </div>
             
             <div class="game-area">
                 <h3 id="quiz-question" class="mb-20">Loading question...</h3>
-                <div id="quiz-options" class="quiz-options"></div>
-                <div id="quiz-feedback" class="feedback"></div>
+                <div id="quiz-options" class="quiz-options" role="radiogroup" aria-label="Answer options"></div>
+                <div id="quiz-feedback" class="feedback" aria-live="polite"></div>
                 <button id="quiz-next" class="btn btn--primary mt-20 hidden">Next Question →</button>
             </div>
         </div>
@@ -574,21 +693,23 @@
     <!-- Focus Challenge Screen -->
     <div id="focus-screen" class="screen">
         <div class="game-content">
-            <button class="btn btn--outline mb-20" onclick="switchScreen('mode-screen')">← Back</button>
+            <button class="btn btn--outline mb-20" onclick="switchScreen('mode-screen')" aria-label="Go back to mode selection">← Back</button>
             
             <div class="game-header">
                 <h2>Telescope Focus Challenge</h2>
-                <div class="progress-container">
+                <div class="progress-container" role="progressbar" aria-label="Focus challenge progress">
                     <div id="focus-progress" class="progress-bar"></div>
                 </div>
             </div>
             
             <div class="game-area text-center">
-                <canvas id="focus-canvas" width="400" height="300"></canvas>
+                <canvas id="focus-canvas" width="400" height="300" aria-label="Telescope focus simulation"></canvas>
                 <p>Adjust the focus to get the clearest image possible!</p>
                 
                 <div class="focus-controls">
-                    <input type="range" id="focus-slider" min="0" max="100" value="0" style="width: 100%; margin: 20px 0;">
+                    <input type="range" id="focus-slider" min="0" max="100" value="0" 
+                           style="width: 100%; margin: 20px 0;" 
+                           aria-label="Focus adjustment slider">
                     <div style="display: flex; justify-content: space-between; margin-bottom: 20px;">
                         <span>Blurry</span>
                         <span>Perfect Focus</span>
@@ -597,7 +718,7 @@
                     <button id="focus-submit" class="btn btn--primary">Submit Focus</button>
                 </div>
                 
-                <div id="focus-feedback" class="feedback"></div>
+                <div id="focus-feedback" class="feedback" aria-live="polite"></div>
             </div>
         </div>
     </div>
@@ -605,26 +726,26 @@
     <!-- Telescope Comparison Screen -->
     <div id="compare-screen" class="screen">
         <div class="game-content">
-            <button class="btn btn--outline mb-20" onclick="switchScreen('mode-screen')">← Back</button>
+            <button class="btn btn--outline mb-20" onclick="switchScreen('mode-screen')" aria-label="Go back to mode selection">← Back</button>
             
             <div class="game-header">
                 <h2>Telescope Comparison Challenge</h2>
-                <div class="progress-container">
+                <div class="progress-container" role="progressbar" aria-label="Comparison challenge progress">
                     <div id="compare-progress" class="progress-bar"></div>
                 </div>
             </div>
             
             <div class="game-area text-center">
-                <canvas id="compare-canvas" width="400" height="300"></canvas>
+                <canvas id="compare-canvas" width="400" height="300" aria-label="Telescope comparison image"></canvas>
                 <h3 id="compare-question" class="mb-20">Which telescope captured this image?</h3>
                 
-                <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
-                    <button class="btn btn--outline telescope-btn" data-telescope="JWST">James Webb</button>
-                    <button class="btn btn--outline telescope-btn" data-telescope="Hubble">Hubble</button>
-                    <button class="btn btn--outline telescope-btn" data-telescope="Spitzer">Spitzer</button>
+                <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;" role="radiogroup" aria-label="Telescope options">
+                    <button class="btn btn--outline telescope-btn" data-telescope="JWST" role="radio" aria-checked="false">James Webb</button>
+                    <button class="btn btn--outline telescope-btn" data-telescope="Hubble" role="radio" aria-checked="false">Hubble</button>
+                    <button class="btn btn--outline telescope-btn" data-telescope="Spitzer" role="radio" aria-checked="false">Spitzer</button>
                 </div>
                 
-                <div id="compare-feedback" class="feedback"></div>
+                <div id="compare-feedback" class="feedback" aria-live="polite"></div>
             </div>
         </div>
     </div>
@@ -632,7 +753,7 @@
     <!-- Gallery Screen -->
     <div id="gallery-screen" class="screen">
         <div class="game-content">
-            <button class="btn btn--outline mb-20" onclick="switchScreen('mode-screen')">← Back</button>
+            <button class="btn btn--outline mb-20" onclick="switchScreen('mode-screen')" aria-label="Go back to mode selection">← Back</button>
             
             <h1 class="text-center mb-20">🌌 Cosmic Gallery</h1>
             <p class="text-center mb-20">Explore the magnificent cosmic objects discovered by space telescopes</p>
@@ -677,11 +798,11 @@
     </div>
 
     <!-- Achievement Modal -->
-    <div id="achievement-modal" class="modal hidden">
+    <div id="achievement-modal" class="modal hidden" role="dialog" aria-labelledby="modal-achievement-name" aria-describedby="modal-achievement-desc">
         <div class="modal-content">
             <h2>🎊 Achievement Unlocked!</h2>
             <div class="achievement-display">
-                <div class="achievement-icon" id="modal-achievement-icon">🏆</div>
+                <div class="achievement-icon" id="modal-achievement-icon" aria-hidden="true">🏆</div>
                 <div>
                     <div style="font-size: 1.5rem; font-weight: bold; margin-bottom: 10px;" id="modal-achievement-name">Achievement Name</div>
                     <div id="modal-achievement-desc">Achievement description</div>
@@ -692,7 +813,7 @@
     </div>
 
     <script>
-        // EMBEDDED JAVASCRIPT - Complete game logic with all JSON data
+        // EMBEDDED JAVASCRIPT - Complete game logic optimized with Materials integration
         
         // Game Data (Embedded JSON)
         const GAME_DATA = {
@@ -728,7 +849,8 @@
                 {id: "quiz_master", name: "Quiz Master", description: "Answer 5 quiz questions correctly in a row", icon: "🧠"},
                 {id: "explorer", name: "Explorer", description: "Visit all sections of the game", icon: "🚀"},
                 {id: "perfect_vision", name: "Perfect Vision", description: "Complete a focus challenge with perfect accuracy", icon: "👁️"},
-                {id: "knowledge_seeker", name: "Knowledge Seeker", description: "Answer 10 questions correctly", icon: "📚"}
+                {id: "knowledge_seeker", name: "Knowledge Seeker", description: "Answer 10 questions correctly", icon: "📚"},
+                {id: "material_scholar", name: "Material Scholar", description: "Access the advanced learning materials", icon: "🎓"}
             ],
             cosmicObjects: [
                 {name: "Carina Nebula", type: "Star-forming region", distance: "7,500 light-years"},
@@ -736,7 +858,8 @@
                 {name: "Stephan's Quintet", type: "Galaxy group", distance: "290 million light-years"},
                 {name: "Southern Ring Nebula", type: "Planetary nebula", distance: "2,000 light-years"},
                 {name: "WASP-96b", type: "Exoplanet", distance: "1,150 light-years"}
-            ]
+            ],
+            materialsUrl: "https://rafiaya.github.io/chapters/"
         };
 
         // Questions Data (All 75 questions embedded)
@@ -801,6 +924,66 @@
                     options: ["Explorer 1", "Sputnik 1", "Telstar", "Vanguard 1"],
                     correct: 1,
                     explanation: "Sputnik 1 was launched by the Soviet Union on October 4, 1957."
+                },
+                {
+                    question: "Which telescope has captured some of the deepest images of the universe?",
+                    options: ["James Webb Space Telescope", "Hubble Space Telescope", "Spitzer Space Telescope", "Kepler Space Telescope"],
+                    correct: 1,
+                    explanation: "Hubble Space Telescope has captured iconic deep field images showing galaxies billions of light-years away."
+                },
+                {
+                    question: "What is the closest star to our solar system?",
+                    options: ["Alpha Centauri", "Sirius", "Vega", "Polaris"],
+                    correct: 0,
+                    explanation: "Alpha Centauri is the closest star system to our solar system at about 4.37 light-years away."
+                },
+                {
+                    question: "How many planets are in our solar system?",
+                    options: ["7", "8", "9", "10"],
+                    correct: 1,
+                    explanation: "Our solar system has 8 planets: Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, and Neptune."
+                },
+                {
+                    question: "What causes the seasons on Earth?",
+                    options: ["Distance from the Sun", "Earth's axial tilt", "Solar flares", "Moon's gravity"],
+                    correct: 1,
+                    explanation: "Earth's seasons are caused by the planet's 23.5-degree axial tilt as it orbits the Sun."
+                },
+                {
+                    question: "What is the largest planet in our solar system?",
+                    options: ["Saturn", "Jupiter", "Neptune", "Uranus"],
+                    correct: 1,
+                    explanation: "Jupiter is the largest planet in our solar system, with a mass greater than all other planets combined."
+                },
+                {
+                    question: "Which space agency launched the Curiosity rover?",
+                    options: ["ESA", "NASA", "Roscosmos", "JAXA"],
+                    correct: 1,
+                    explanation: "NASA's Curiosity rover was launched in 2011 and landed on Mars in 2012."
+                },
+                {
+                    question: "What is a light-year?",
+                    options: ["A unit of time", "A unit of distance", "A type of star", "A space mission"],
+                    correct: 1,
+                    explanation: "A light-year is the distance light travels in one year, approximately 9.46 trillion kilometers."
+                },
+                {
+                    question: "Which planet is known as the Red Planet?",
+                    options: ["Venus", "Mars", "Jupiter", "Saturn"],
+                    correct: 1,
+                    explanation: "Mars is known as the Red Planet due to iron oxide (rust) on its surface."
+                },
+                {
+                    question: "What is the name of the galaxy nearest to the Milky Way?",
+                    options: ["Triangulum Galaxy", "Andromeda Galaxy", "Whirlpool Galaxy", "Sombrero Galaxy"],
+                    correct: 1,
+                    explanation: "The Andromeda Galaxy is the nearest major galaxy to the Milky Way, about 2.5 million light-years away."
+                },
+                {
+                    question: "Which Apollo mission first landed humans on the Moon?",
+                    options: ["Apollo 10", "Apollo 11", "Apollo 12", "Apollo 13"],
+                    correct: 1,
+                    explanation: "Apollo 11 was the first mission to successfully land humans on the Moon in July 1969."
                 }
             ],
             medium: [
@@ -863,20 +1046,50 @@
                     options: ["Visible black material", "Invisible mass that holds galaxies together and makes up most of the universe's matter", "Empty space", "Dead stars"],
                     correct: 1,
                     explanation: "Dark matter provides gravitational scaffolding for galaxy formation and makes up about 27% of the universe."
+                },
+                {
+                    question: "How do astronomers measure distances to far galaxies?",
+                    options: ["Direct measurement with rulers", "Using standard candles like Type Ia supernovae and Cepheid variables", "Guessing based on brightness", "Time travel"],
+                    correct: 1,
+                    explanation: "Astronomers use standard candles - objects with known intrinsic brightness - to calculate distances via the inverse square law."
+                },
+                {
+                    question: "What is the significance of the cosmic microwave background?",
+                    options: ["It's just random noise", "It's the afterglow of the Big Bang, providing evidence for the hot, dense early universe", "It comes from nearby stars", "It's caused by Earth's atmosphere"],
+                    correct: 1,
+                    explanation: "The CMB is radiation left over from when the universe became transparent, about 380,000 years after the Big Bang."
+                },
+                {
+                    question: "Why do galaxies rotate faster than expected?",
+                    options: ["They don't rotate faster than expected", "Dark matter provides additional gravitational mass not visible to telescopes", "Stars are moving randomly", "Black holes accelerate rotation"],
+                    correct: 1,
+                    explanation: "Galaxy rotation curves remain flat at large radii, indicating invisible dark matter provides additional gravitational influence."
+                },
+                {
+                    question: "What is the main sequence on the Hertzsprung-Russell diagram?",
+                    options: ["A line of dead stars", "The evolutionary track where stars spend most of their lives fusing hydrogen", "A classification of planets", "A telescope alignment procedure"],
+                    correct: 1,
+                    explanation: "The main sequence represents stars in hydrostatic equilibrium, steadily fusing hydrogen in their cores."
+                },
+                {
+                    question: "How do binary star systems help astronomers?",
+                    options: ["They don't help at all", "They allow direct measurement of stellar masses through orbital mechanics", "They only look pretty", "They block other stars"],
+                    correct: 1,
+                    explanation: "Binary systems enable mass determination via Kepler's laws and provide laboratories for stellar evolution studies."
                 }
             ],
             hard: [
                 {
-                    question: "Why is the James Webb Space Telescope positioned at the L2 point?",
-                    options: ["It's the closest point to stars", "L2 offers gravitational stability and constant shielding from the Sun, Earth, and Moon", "It's the cheapest location", "It has the best internet connection"],
+                    question: "Why is the James Webb Space Telescope positioned at the L2 Lagrange point?",
+                    options: ["It's the closest point to stars", "L2 offers gravitational stability and constant shielding from Sun, Earth, and Moon", "It's the cheapest location", "It provides the best view of all planets"],
                     correct: 1,
-                    explanation: "The L2 Lagrange point provides gravitational stability and allows JWST's sunshield to block radiation from multiple sources."
+                    explanation: "The L2 Lagrange point provides gravitational stability allowing JWST to maintain position with minimal fuel, while the sunshield can simultaneously block radiation from multiple sources."
                 },
                 {
                     question: "How do gravitational wave observations complement electromagnetic observations?",
                     options: ["They replace electromagnetic observations", "Gravitational waves probe events like black hole mergers invisible to light, forming 'multi-messenger astronomy'", "They only work on Earth", "They are less accurate"],
                     correct: 1,
-                    explanation: "Gravitational waves detect spacetime distortions from events invisible to light, providing complementary information."
+                    explanation: "Gravitational waves detect spacetime distortions from events invisible to light, providing complementary information about cosmic phenomena."
                 },
                 {
                     question: "What engineering challenges make interstellar travel fundamentally harder than interplanetary travel?",
@@ -894,7 +1107,7 @@
                     question: "Why is detecting biosignatures in exoplanet atmospheres extremely difficult?",
                     options: ["Planets are too small", "Requires separating faint planetary signals from bright starlight and distinguishing biological from non-biological processes", "We lack the technology", "Atmospheres change too quickly"],
                     correct: 1,
-                    explanation: "Biosignature detection requires extraordinary precision to isolate weak signals and eliminate false positives."
+                    explanation: "Biosignature detection requires extraordinary precision to isolate weak signals and eliminate false positives from abiotic processes."
                 }
             ]
         };
@@ -905,7 +1118,7 @@
                 this.currentScreen = 'welcome-screen';
                 this.currentLevel = 'easy';
                 this.totalScore = this.loadScore();
-                this.gameScores = {compare: 0, focus: 0, quiz: 0};
+                this.gameScores = {compare: 0, focus: 0, quiz: 0, materials: 0};
                 this.achievements = new Set(this.loadAchievements());
                 
                 // Game states
@@ -935,33 +1148,72 @@
             }
 
             init() {
-                console.log('Initializing JWST Game');
+                console.log('🔭 Initializing JWST Educational Game with Materials Integration');
                 this.setupEventListeners();
                 this.updateScoreDisplay();
                 this.showGallery(); // Pre-populate gallery
-                console.log('Game initialized successfully');
+                
+                // Analytics (if needed)
+                this.trackEvent('game_initialized');
+                
+                console.log('✅ Game initialized successfully');
+                console.log('📊 Game Statistics:');
+                console.log('- Easy Questions:', QUESTIONS_DATA.easy.length);
+                console.log('- Medium Questions:', QUESTIONS_DATA.medium.length);  
+                console.log('- Hard Questions:', QUESTIONS_DATA.hard.length);
+                console.log('- Total Questions:', Object.values(QUESTIONS_DATA).flat().length);
+                console.log('- Telescopes:', GAME_DATA.telescopes.length);
+                console.log('- Achievements:', GAME_DATA.achievements.length);
+                console.log('- Materials URL:', GAME_DATA.materialsUrl);
             }
 
             setupEventListeners() {
                 // Start button
                 document.getElementById('start-btn').addEventListener('click', () => {
                     this.switchScreen('level-screen');
+                    this.trackEvent('game_started');
                 });
 
-                // Level selection
+                // Level selection with keyboard support and Materials handling
                 document.querySelectorAll('.level-card').forEach(card => {
-                    card.addEventListener('click', () => {
-                        this.currentLevel = card.dataset.level;
+                    const clickHandler = () => {
+                        const level = card.dataset.level;
+                        
+                        // Special handling for Materials
+                        if (level === 'materials') {
+                            this.openMaterialsSession();
+                            return;
+                        }
+                        
+                        // Regular level selection
+                        this.currentLevel = level;
                         this.updateLevelDisplay();
                         this.switchScreen('mode-screen');
+                        this.trackEvent('level_selected', {level: this.currentLevel});
+                    };
+                    
+                    card.addEventListener('click', clickHandler);
+                    card.addEventListener('keydown', (e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            clickHandler();
+                        }
                     });
                 });
 
-                // Mode selection
+                // Mode selection with keyboard support
                 document.querySelectorAll('.mode-card').forEach(card => {
-                    card.addEventListener('click', () => {
+                    const clickHandler = () => {
                         this.startGameMode(card.dataset.mode);
                         this.checkAchievement('explorer');
+                    };
+                    
+                    card.addEventListener('click', clickHandler);
+                    card.addEventListener('keydown', (e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            clickHandler();
+                        }
                     });
                 });
 
@@ -984,17 +1236,88 @@
                     btn.addEventListener('click', () => {
                         if (!this.compareState.answered) {
                             this.answerCompareQuestion(btn.dataset.telescope);
+                            // Update aria-checked
+                            document.querySelectorAll('.telescope-btn').forEach(b => {
+                                b.setAttribute('aria-checked', 'false');
+                            });
+                            btn.setAttribute('aria-checked', 'true');
                         }
                     });
                 });
+                
+                // Error handling for failed operations
+                window.addEventListener('error', (event) => {
+                    console.error('Game error:', event.error);
+                    this.trackEvent('error', {message: event.error?.message});
+                });
+            }
+
+            // New method to handle Materials session
+            openMaterialsSession() {
+                console.log('Opening Materials Learning Session');
+                
+                // Award achievement for accessing materials
+                this.checkAchievement('material_scholar');
+                
+                // Add points for accessing materials
+                this.gameScores.materials += 50;
+                this.totalScore += 50;
+                this.saveScore();
+                this.updateScoreDisplay();
+                
+                // Track the event
+                this.trackEvent('materials_accessed', {url: GAME_DATA.materialsUrl});
+                
+                // Show confirmation before opening external site
+                const userConfirmed = confirm(
+                    '🚀 Opening Advanced Learning Session!\n\n' +
+                    'This will open a comprehensive 30-chapter course covering:\n' +
+                    '• NASA History & Achievements\n' +
+                    '• Space Telescopes & Technology\n' +
+                    '• International Space Station\n' +
+                    '• Space Exploration & Probes\n' +
+                    '• Astronomy & Astrophysics\n\n' +
+                    'Continue to external learning platform?'
+                );
+                
+                if (userConfirmed) {
+                    // Open materials in new tab/window
+                    window.open(GAME_DATA.materialsUrl, '_blank', 'noopener,noreferrer');
+                    
+                    // Show achievement modal if first time
+                    if (!this.achievements.has('material_scholar')) {
+                        const achievement = GAME_DATA.achievements.find(a => a.id === 'material_scholar');
+                        if (achievement) {
+                            setTimeout(() => {
+                                this.showAchievementModal(achievement);
+                            }, 500);
+                        }
+                    }
+                } else {
+                    console.log('User cancelled materials access');
+                }
             }
 
             switchScreen(screenId) {
                 document.querySelectorAll('.screen').forEach(screen => {
                     screen.classList.remove('active');
                 });
-                document.getElementById(screenId).classList.add('active');
-                this.currentScreen = screenId;
+                
+                const newScreen = document.getElementById(screenId);
+                if (newScreen) {
+                    newScreen.classList.add('active');
+                    this.currentScreen = screenId;
+                    
+                    // Accessibility: focus management
+                    setTimeout(() => {
+                        const firstFocusable = newScreen.querySelector('button, [tabindex="0"]');
+                        if (firstFocusable) {
+                            firstFocusable.focus();
+                        }
+                    }, 100);
+                } else {
+                    console.error('Screen not found:', screenId);
+                }
             }
 
             updateLevelDisplay() {
@@ -1005,6 +1328,8 @@
             }
 
             startGameMode(mode) {
+                this.trackEvent('mode_started', {mode, level: this.currentLevel});
+                
                 switch(mode) {
                     case 'quiz':
                         this.startQuizGame();
@@ -1018,6 +1343,8 @@
                     case 'gallery':
                         this.switchScreen('gallery-screen');
                         break;
+                    default:
+                        console.error('Unknown game mode:', mode);
                 }
             }
 
@@ -1043,6 +1370,11 @@
 
             showQuizQuestion() {
                 const question = this.quizState.questions[this.quizState.currentQuestion];
+                if (!question) {
+                    console.error('No question available');
+                    return;
+                }
+                
                 document.getElementById('quiz-question').textContent = question.question;
                 document.getElementById('quiz-question-number').textContent = 
                     `Question ${this.quizState.currentQuestion + 1} of ${this.quizState.questions.length}`;
@@ -1054,6 +1386,8 @@
                     const button = document.createElement('button');
                     button.className = 'quiz-option';
                     button.textContent = option;
+                    button.setAttribute('role', 'radio');
+                    button.setAttribute('aria-checked', 'false');
                     button.onclick = () => this.answerQuizQuestion(index);
                     optionsContainer.appendChild(button);
                 });
@@ -1068,6 +1402,8 @@
 
                 document.querySelectorAll('.quiz-option').forEach((btn, index) => {
                     btn.style.pointerEvents = 'none';
+                    btn.setAttribute('aria-checked', index === selectedIndex ? 'true' : 'false');
+                    
                     if (index === question.correct) {
                         btn.classList.add('correct');
                     } else if (index === selectedIndex && !correct) {
@@ -1090,6 +1426,12 @@
                     this.quizState.correctStreak = 0;
                 }
 
+                this.trackEvent('question_answered', {
+                    correct, 
+                    level: this.currentLevel,
+                    questionIndex: this.quizState.currentQuestion
+                });
+
                 document.getElementById('quiz-next').classList.remove('hidden');
             }
 
@@ -1107,9 +1449,17 @@
             finishQuizGame() {
                 this.gameScores.quiz = this.quizState.score;
                 this.totalScore += this.quizState.score;
+                
                 if (this.quizState.score >= this.getPointsForLevel() * 10) {
                     this.checkAchievement('knowledge_seeker');
                 }
+                
+                this.trackEvent('quiz_completed', {
+                    score: this.quizState.score,
+                    level: this.currentLevel,
+                    accuracy: this.quizState.score / (this.quizState.questions.length * this.getPointsForLevel())
+                });
+                
                 this.showResults('quiz');
             }
 
@@ -1136,12 +1486,13 @@
                 const height = canvas.height;
                 const blurAmount = Math.abs(focusValue - this.focusState.targetFocus) / 2;
 
+                // Clear and set background
                 ctx.fillStyle = '#000033';
                 ctx.fillRect(0, 0, width, height);
 
                 // Draw stars with blur effect
+                ctx.save();
                 for (let i = 0; i < 20; i++) {
-                    ctx.save();
                     ctx.globalAlpha = Math.max(0.3, 1 - blurAmount / 50);
                     ctx.fillStyle = '#ffffff';
                     ctx.beginPath();
@@ -1152,17 +1503,19 @@
                         0, 2 * Math.PI
                     );
                     ctx.fill();
-                    ctx.restore();
                 }
+                ctx.restore();
 
-                // Draw central galaxy
+                // Draw central galaxy with blur
                 const gradient = ctx.createRadialGradient(width/2, height/2, 0, width/2, height/2, 80);
                 gradient.addColorStop(0, '#ff6b9d');
                 gradient.addColorStop(0.5, '#4ecdc4');
                 gradient.addColorStop(1, '#45b7d1');
                 
                 ctx.save();
-                ctx.filter = `blur(${blurAmount / 10}px)`;
+                if (ctx.filter) {
+                    ctx.filter = `blur(${Math.max(0, blurAmount / 10)}px)`;
+                }
                 ctx.fillStyle = gradient;
                 ctx.beginPath();
                 ctx.arc(width/2, height/2, 60, 0, 2 * Math.PI);
@@ -1202,6 +1555,12 @@
                     this.checkAchievement('first_focus');
                 }
 
+                this.trackEvent('focus_submitted', {
+                    difference,
+                    points,
+                    challenge: this.focusState.currentChallenge
+                });
+
                 setTimeout(() => {
                     this.focusState.currentChallenge++;
                     if (this.focusState.currentChallenge < this.focusState.totalChallenges) {
@@ -1221,6 +1580,7 @@
             finishFocusGame() {
                 this.gameScores.focus = this.focusState.score;
                 this.totalScore += this.focusState.score;
+                this.trackEvent('focus_completed', {score: this.focusState.score});
                 this.showResults('focus');
             }
 
@@ -1269,6 +1629,7 @@
                 document.querySelectorAll('.telescope-btn').forEach(btn => {
                     btn.classList.remove('correct', 'incorrect', 'selected');
                     btn.style.pointerEvents = 'auto';
+                    btn.setAttribute('aria-checked', 'false');
                 });
 
                 document.getElementById('compare-feedback').classList.remove('show', 'correct', 'incorrect');
@@ -1283,7 +1644,7 @@
                 ctx.fillStyle = '#000011';
                 ctx.fillRect(0, 0, width, height);
 
-                // Add stars
+                // Add background stars
                 for (let i = 0; i < 30; i++) {
                     ctx.fillStyle = '#ffffff';
                     ctx.beginPath();
@@ -1296,7 +1657,7 @@
                     ctx.fill();
                 }
 
-                // Draw main object
+                // Draw main cosmic object with telescope-specific characteristics
                 const detail = telescope.shortName === 'JWST' ? 1.5 :
                               telescope.shortName === 'Hubble' ? 1.2 : 1.0;
 
@@ -1309,6 +1670,21 @@
                 ctx.beginPath();
                 ctx.arc(width/2, height/2, 60 * detail, 0, 2 * Math.PI);
                 ctx.fill();
+
+                // Add telescope-specific visual effects
+                if (telescope.shortName === 'JWST') {
+                    // Add infrared-style diffraction spikes
+                    ctx.strokeStyle = telescope.color;
+                    ctx.lineWidth = 2;
+                    for (let i = 0; i < 4; i++) {
+                        ctx.beginPath();
+                        ctx.moveTo(width/2 - 40, height/2);
+                        ctx.lineTo(width/2 + 40, height/2);
+                        ctx.moveTo(width/2, height/2 - 40);
+                        ctx.lineTo(width/2, height/2 + 40);
+                        ctx.stroke();
+                    }
+                }
             }
 
             answerCompareQuestion(selected) {
@@ -1321,8 +1697,10 @@
                 document.querySelectorAll('.telescope-btn').forEach(btn => {
                     btn.style.pointerEvents = 'none';
                     const telescope = btn.dataset.telescope;
+                    
                     if (telescope === selected) {
                         btn.classList.add('selected');
+                        btn.setAttribute('aria-checked', 'true');
                     }
                     if (telescope === question.correct) {
                         btn.classList.add('correct');
@@ -1340,6 +1718,12 @@
                 if (correct) {
                     this.compareState.score += this.getPointsForLevel();
                 }
+
+                this.trackEvent('comparison_answered', {
+                    correct,
+                    selected,
+                    correctAnswer: question.correct
+                });
 
                 setTimeout(() => {
                     this.compareState.currentQuestion++;
@@ -1361,6 +1745,7 @@
                     this.checkAchievement('telescope_expert');
                 }
                 
+                this.trackEvent('comparison_completed', {score: this.compareState.score});
                 this.showResults('compare');
             }
 
@@ -1413,11 +1798,20 @@
                     "JWST's mirror is made of 18 hexagonal segments that work together as one giant mirror.",
                     "The telescope operates at extremely cold temperatures, around -370°F (-223°C).",
                     "The beryllium mirrors are coated with gold thinner than human hair!",
-                    "JWST can detect the heat signature of a bumblebee on the Moon!"
+                    "JWST can detect the heat signature of a bumblebee on the Moon!",
+                    "Each mirror segment can be adjusted with nanometer precision while in space.",
+                    "The sunshield is about the size of a tennis court when fully deployed.",
+                    "Our Materials Learning Session covers 30 chapters of space exploration knowledge!"
                 ];
                 
                 document.getElementById('educational-fact').textContent = 
                     facts[Math.floor(Math.random() * facts.length)];
+
+                this.trackEvent('game_completed', {
+                    mode: gameMode,
+                    score: this.totalScore,
+                    accuracy
+                });
             }
 
             checkAchievement(achievementId) {
@@ -1428,6 +1822,7 @@
                     this.achievements.add(achievementId);
                     this.showAchievementModal(achievement);
                     this.saveAchievements();
+                    this.trackEvent('achievement_unlocked', {achievement: achievementId});
                 }
             }
 
@@ -1436,6 +1831,13 @@
                 document.getElementById('modal-achievement-name').textContent = achievement.name;
                 document.getElementById('modal-achievement-desc').textContent = achievement.description;
                 document.getElementById('achievement-modal').classList.remove('hidden');
+                
+                // Focus management for accessibility
+                setTimeout(() => {
+                    const modal = document.getElementById('achievement-modal');
+                    const closeBtn = modal.querySelector('.btn');
+                    if (closeBtn) closeBtn.focus();
+                }, 100);
             }
 
             displayAchievements() {
@@ -1451,6 +1853,10 @@
                         container.appendChild(badge);
                     }
                 });
+                
+                if (this.achievements.size === 0) {
+                    container.innerHTML = '<p>No achievements unlocked yet. Keep exploring!</p>';
+                }
             }
 
             // Utility functions
@@ -1471,30 +1877,54 @@
             }
 
             updateScoreDisplay() {
-                document.getElementById('total-score').textContent = this.totalScore;
-                const modeScore = document.getElementById('total-score-mode');
-                if (modeScore) modeScore.textContent = this.totalScore;
+                const elements = ['total-score', 'total-score-mode'];
+                elements.forEach(id => {
+                    const el = document.getElementById(id);
+                    if (el) el.textContent = this.totalScore;
+                });
             }
 
-            // Save/Load functions
+            // Save/Load functions with error handling
             saveScore() {
-                localStorage.setItem('jwst-game-score', this.totalScore.toString());
+                try {
+                    localStorage.setItem('jwst-game-score', this.totalScore.toString());
+                } catch (error) {
+                    console.warn('Could not save score:', error);
+                }
             }
 
             loadScore() {
-                return parseInt(localStorage.getItem('jwst-game-score') || '0');
+                try {
+                    return parseInt(localStorage.getItem('jwst-game-score') || '0');
+                } catch (error) {
+                    console.warn('Could not load score:', error);
+                    return 0;
+                }
             }
 
             saveAchievements() {
-                localStorage.setItem('jwst-game-achievements', JSON.stringify(Array.from(this.achievements)));
+                try {
+                    localStorage.setItem('jwst-game-achievements', JSON.stringify(Array.from(this.achievements)));
+                } catch (error) {
+                    console.warn('Could not save achievements:', error);
+                }
             }
 
             loadAchievements() {
                 try {
                     return JSON.parse(localStorage.getItem('jwst-game-achievements') || '[]');
-                } catch {
+                } catch (error) {
+                    console.warn('Could not load achievements:', error);
                     return [];
                 }
+            }
+
+            // Analytics/tracking (placeholder - replace with your analytics service)
+            trackEvent(eventName, properties = {}) {
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', eventName, properties);
+                }
+                console.log('Event:', eventName, properties);
             }
         }
 
@@ -1511,18 +1941,41 @@
 
         // Initialize game when page loads
         document.addEventListener('DOMContentLoaded', () => {
+            // Initialize game
             window.game = new JWSTGame();
             window.game.init();
             
-            console.log('🔭 JWST Educational Game Loaded Successfully!');
-            console.log('📊 Game Statistics:');
-            console.log('- Easy Questions:', QUESTIONS_DATA.easy.length);
-            console.log('- Medium Questions:', QUESTIONS_DATA.medium.length);
-            console.log('- Hard Questions:', QUESTIONS_DATA.hard.length);
-            console.log('- Total Questions:', Object.values(QUESTIONS_DATA).flat().length);
-            console.log('- Telescopes:', GAME_DATA.telescopes.length);
-            console.log('- Achievements:', GAME_DATA.achievements.length);
-            console.log('- Cosmic Objects:', GAME_DATA.cosmicObjects.length);
+            // Service Worker registration for offline capability
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('sw.js').catch(() => {
+                    console.log('Service worker registration failed (optional)');
+                });
+            }
+            
+            // Performance monitoring
+            if ('performance' in window && 'mark' in performance) {
+                performance.mark('jwst-game-loaded');
+            }
+            
+            console.log('🚀 JWST Educational Game loaded with Materials Integration!');
+        });
+
+        // Handle page visibility changes (pause/resume game)
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                console.log('Game paused');
+            } else {
+                console.log('Game resumed');
+            }
+        });
+
+        // Handle offline/online status
+        window.addEventListener('online', () => {
+            console.log('Game is online');
+        });
+
+        window.addEventListener('offline', () => {
+            console.log('Game is offline - core features still available');
         });
     </script>
 </body>
