@@ -1,0 +1,214 @@
+{
+  "hard": [
+    {
+      "id": 61,
+      "difficulty": "hard",
+      "question": "Why is the James Webb Space Telescope positioned at the L2 Lagrange point, and what challenges does this location pose?",
+      "options": [
+        "It's the closest point to stars and easiest to maintain",
+        "L2 offers gravitational stability and constant shielding from Sun, Earth, and Moon, but poses challenges with thermal stability, limited repairability, and orbital corrections",
+        "It's the cheapest location with best communication",
+        "It provides the best view of all planets simultaneously"
+      ],
+      "correct": 1,
+      "explanation": "The L2 Lagrange point provides gravitational stability allowing JWST to maintain position with minimal fuel, while the sunshield can simultaneously block radiation from the Sun, Earth, and Moon. However, this location is 1.5 million km from Earth, making repairs impossible and requiring precise orbital corrections.",
+      "category": "telescope_engineering"
+    },
+    {
+      "id": 62,
+      "difficulty": "hard",
+      "question": "How do the design trade-offs between optical, infrared, and radio telescopes impact the kind of discoveries they can make?",
+      "options": [
+        "All telescopes can observe the same phenomena equally well",
+        "Optical telescopes are limited by atmospheric distortion, infrared need cooling systems to reduce thermal noise, and radio telescopes penetrate dust but require large arrays for resolution - each choice influences observable phenomena",
+        "Only size matters, not wavelength sensitivity",
+        "All telescopes work best in space environments"
+      ],
+      "correct": 1,
+      "explanation": "Each telescope type has fundamental physical limitations: optical telescopes suffer atmospheric scintillation and extinction, infrared telescopes must overcome thermal background noise requiring cryogenic cooling, and radio telescopes need enormous collecting areas for sufficient resolution. These constraints determine what cosmic phenomena each can effectively study.",
+      "category": "telescope_physics"
+    },
+    {
+      "id": 63,
+      "difficulty": "hard",
+      "question": "What are the astrophysical implications of observing high redshift galaxies in understanding cosmic evolution?",
+      "options": [
+        "High redshift galaxies are just closer galaxies moving fast",
+        "High redshift galaxies reveal conditions of the early universe, providing evidence for galaxy formation, star birth rates, and large-scale cosmic structure growth over time",
+        "Redshift only tells us about galaxy colors, not evolution",
+        "High redshift observations are not reliable for scientific analysis"
+      ],
+      "correct": 1,
+      "explanation": "High redshift galaxies are observed as they existed billions of years ago due to light travel time. Their properties reveal early universe conditions including lower metallicity, higher star formation rates, different morphologies, and the assembly of the first large-scale structures, providing crucial constraints on cosmological models.",
+      "category": "cosmology"
+    },
+    {
+      "id": 64,
+      "difficulty": "hard",
+      "question": "How do gravitational wave observations complement electromagnetic observations in forming 'multi-messenger astronomy'?",
+      "options": [
+        "Gravitational waves replace the need for electromagnetic observations",
+        "Gravitational waves probe events like black hole mergers invisible to light, while electromagnetic waves capture radiation - together they provide comprehensive cosmic event analysis",
+        "Both types of observations provide identical information",
+        "Gravitational waves are only useful for Earth-based phenomena"
+      ],
+      "correct": 1,
+      "explanation": "Gravitational waves detect spacetime curvature changes from accelerating masses, revealing events that produce little or no electromagnetic radiation (like black hole mergers). Combined with electromagnetic observations, they provide timing, mass, spin, and environmental information impossible to obtain from either method alone.",
+      "category": "multi_messenger_astronomy"
+    },
+    {
+      "id": 65,
+      "difficulty": "hard",
+      "question": "What engineering challenges make interstellar travel fundamentally harder than interplanetary travel?",
+      "options": [
+        "Interstellar travel is only slightly more difficult than interplanetary travel",
+        "Requires propulsion systems beyond chemical rockets, protection from cosmic rays, sustainable life support systems, and energy generation on unprecedented scales",
+        "The main challenge is just distance, everything else is the same",
+        "Current technology is already sufficient for interstellar missions"
+      ],
+      "correct": 1,
+      "explanation": "Interstellar distances require propulsion with specific impulse orders of magnitude beyond chemical rockets, shielding against high-energy cosmic radiation over decades or centuries, closed-loop life support systems with near-perfect recycling, and power generation sustainable over geological timescales - all simultaneous requirements exceeding current technological capabilities.",
+      "category": "space_propulsion"
+    },
+    {
+      "id": 66,
+      "difficulty": "hard",
+      "question": "How does dark matter influence galaxy rotation curves, and why can't visible matter alone explain them?",
+      "options": [
+        "Dark matter has no effect on galaxy rotation",
+        "Dark matter provides additional unseen mass that explains why galaxy rotation curves remain flat at large radii instead of declining as predicted by visible matter alone",
+        "Galaxy rotation curves are explained entirely by stellar mass",
+        "Dark matter only affects galaxy formation, not rotation"
+      ],
+      "correct": 1,
+      "explanation": "Kepler's laws predict orbital velocities should decrease with radius as v ∝ r^(-1/2) for visible matter distributions. Observed flat rotation curves require additional gravitational mass not accounted for by stars and gas - this 'missing mass' is attributed to dark matter halos extending well beyond visible galactic disks.",
+      "category": "dark_matter"
+    },
+    {
+      "id": 67,
+      "difficulty": "hard",
+      "question": "Explain the importance of the Cosmic Microwave Background (CMB) in validating the Big Bang model and inflation theory.",
+      "options": [
+        "The CMB is just random noise from space",
+        "The CMB is relic radiation from ~380,000 years after the Big Bang, providing evidence for universe expansion, uniformity with slight anisotropies that seed structure formation, and validating inflation theory",
+        "The CMB only tells us about current universe temperature",
+        "The CMB contradicts the Big Bang theory"
+      ],
+      "correct": 1,
+      "explanation": "The CMB represents the universe's transition from plasma to neutral atoms at recombination (~380,000 years post-Big Bang). Its near-perfect blackbody spectrum at 2.725K confirms cosmological redshift predictions, while tiny anisotropies (∆T/T ~ 10^-5) match inflation theory predictions for quantum fluctuation seeds of cosmic structure formation.",
+      "category": "cosmological_physics"
+    },
+    {
+      "id": 68,
+      "difficulty": "hard",
+      "question": "Why are exoplanet detection methods biased towards large planets close to their stars, and how do advanced techniques address this limitation?",
+      "options": [
+        "All planets are equally easy to detect regardless of size or distance",
+        "Transit and radial velocity methods detect larger signals from bigger, closer planets; advanced techniques like direct imaging, gravitational microlensing, and space-based photometry extend detection to smaller, more distant planets",
+        "Only small planets close to stars can be detected",
+        "Current methods have no detection biases"
+      ],
+      "correct": 1,
+      "explanation": "Transit photometry scales with planet area (R²) and requires multiple orbital periods for confirmation, while radial velocity scales with planet mass and orbital frequency. Both methods favor hot Jupiters. Advanced techniques like coronagraphs for direct imaging, gravitational microlensing for distant planets, and space-based precision photometry are expanding the detection parameter space.",
+      "category": "exoplanet_detection"
+    },
+    {
+      "id": 69,
+      "difficulty": "hard",
+      "question": "How does stellar nucleosynthesis explain the abundance of heavier elements in the universe, and what role do supernovae play?",
+      "options": [
+        "All elements formed during the Big Bang",
+        "Fusion in stars produces elements up to iron; supernovae and neutron star mergers create heavier elements through rapid neutron capture, enriching the interstellar medium for future star and planet formation",
+        "Heavy elements come only from planetary formation processes",
+        "Stellar nucleosynthesis only creates hydrogen and helium"
+      ],
+      "correct": 1,
+      "explanation": "Stellar fusion via the pp-chain and CNO cycle creates elements up to iron-56, where nuclear binding energy peaks. Elements heavier than iron require energy input, created during supernovae through rapid neutron capture (r-process) and slow neutron capture (s-process) in AGB stars. These processes seed the ISM with metals essential for rocky planet formation.",
+      "category": "stellar_nucleosynthesis"
+    },
+    {
+      "id": 70,
+      "difficulty": "hard",
+      "question": "What are the challenges of establishing a permanent human base on Mars from a planetary science perspective?",
+      "options": [
+        "Mars colonization presents no significant scientific challenges",
+        "Challenges include thin CO₂ atmosphere, harmful radiation exposure, seasonal dust storms, limited accessible water, extreme temperature variations, and the need for in-situ resource utilization and radiation shielding",
+        "The only challenge is transportation cost",
+        "Mars has identical conditions to Earth for human habitation"
+      ],
+      "correct": 1,
+      "explanation": "Mars' 1% atmospheric pressure prevents liquid water stability and requires pressurized habitats. Lack of magnetosphere exposes surface to cosmic radiation and solar particle events. Global dust storms affect solar power generation. Perchlorate-contaminated regolith complicates agriculture. In-situ resource utilization for oxygen, water, and fuel production requires robust chemical processing systems.",
+      "category": "planetary_science"
+    },
+    {
+      "id": 71,
+      "difficulty": "hard",
+      "question": "How does Hubble's Law provide evidence for an expanding universe, and what limitations does it face at high redshift?",
+      "options": [
+        "Hubble's Law shows the universe is static and unchanging",
+        "Hubble's Law demonstrates recession velocity proportional to distance, proving expansion; at high redshift, relativistic effects and dark energy acceleration complicate the linear relationship, requiring advanced cosmological models",
+        "Hubble's Law only applies to nearby galaxies",
+        "High redshift observations are more accurate than local measurements"
+      ],
+      "correct": 1,
+      "explanation": "Hubble's Law (v = H₀d) establishes universal expansion from the linear velocity-distance relationship. However, at high redshift (z > 1), relativistic corrections become significant, dark energy's accelerated expansion deviates from linear Hubble flow, and systematic uncertainties in distance measurements increase, requiring sophisticated cosmological parameter fitting.",
+      "category": "observational_cosmology"
+    },
+    {
+      "id": 72,
+      "difficulty": "hard",
+      "question": "What makes pulsars and quasars valuable astrophysical tools for probing the universe?",
+      "options": [
+        "Pulsars and quasars are only useful for basic stellar studies",
+        "Pulsars serve as precise cosmic clocks for testing relativity and detecting gravitational waves, while quasars act as bright background beacons to probe intergalactic gas and early universe structures",
+        "Both objects provide identical scientific information",
+        "Pulsars and quasars are too distant to be scientifically useful"
+      ],
+      "correct": 1,
+      "explanation": "Millisecond pulsars provide timing precision rivaling atomic clocks, enabling tests of general relativity, pulsar timing arrays for gravitational wave detection, and precise measurements of stellar masses. Quasars serve as background sources for absorption spectroscopy of intervening gas, probing the intergalactic medium, Lyman-alpha forest, and cosmic reionization history.",
+      "category": "astrophysical_tools"
+    },
+    {
+      "id": 73,
+      "difficulty": "hard",
+      "question": "Why is the detection of biosignatures in exoplanet atmospheres considered one of the most difficult challenges in astrobiology?",
+      "options": [
+        "Biosignature detection is straightforward with current technology",
+        "Detection requires separating extremely faint planetary signals from bright starlight, distinguishing biological gases from abiotic processes, and ensuring robust false-positive elimination through multiple independent measurements",
+        "Only large planets can have detectable biosignatures",
+        "Atmospheric composition is impossible to determine remotely"
+      ],
+      "correct": 1,
+      "explanation": "Exoplanet atmospheric signals are typically 10^-6 to 10^-9 times fainter than their host stars. Potential biosignatures like O₂, O₃, CH₄, and H₂O can be produced by non-biological processes. Robust detection requires simultaneous observation of multiple gases, understanding atmospheric chemistry networks, and ruling out abiotic production mechanisms through detailed atmospheric modeling.",
+      "category": "astrobiology"
+    },
+    {
+      "id": 74,
+      "difficulty": "hard",
+      "question": "Discuss the role of general relativity in predicting black holes and how modern observations validate Einstein's theory.",
+      "options": [
+        "General relativity has no connection to black hole physics",
+        "General relativity predicted black holes as regions where spacetime curvature becomes extreme; modern observations including gravitational waves from black hole mergers, Event Horizon Telescope imaging, and orbital dynamics around Sgr A* confirm Einstein's predictions",
+        "Black holes were discovered before general relativity was developed",
+        "Modern observations contradict general relativity's predictions"
+      ],
+      "correct": 1,
+      "explanation": "Einstein's field equations predict Schwarzschild solutions describing black holes as regions where escape velocity exceeds light speed. LIGO's detection of gravitational waves from black hole mergers matches GR waveform predictions precisely. The Event Horizon Telescope's image of M87*'s shadow confirms GR's prediction of photon sphere radius. Stellar orbits around Sgr A* validate GR's strong-field regime.",
+      "category": "general_relativity"
+    },
+    {
+      "id": 75,
+      "difficulty": "hard",
+      "question": "Compare the scientific benefits and limitations of human-crewed missions versus robotic exploration for advancing our understanding of planetary science.",
+      "options": [
+        "Human missions are always superior to robotic missions",
+        "Human missions enable adaptive decision-making, complex sample analysis, and real-time problem solving, but are extremely costly and risky; robotic missions are cheaper, can operate in harsh environments for decades, but lack flexibility and intuitive reasoning",
+        "Robotic missions provide no scientific value compared to human exploration",
+        "There are no significant differences between human and robotic exploration capabilities"
+      ],
+      "correct": 1,
+      "explanation": "Human explorers excel at rapid environmental assessment, adaptive sampling strategies, complex geological interpretation, and handling unexpected discoveries. However, human missions require life support, radiation shielding, and return capabilities, limiting mission duration and increasing costs by orders of magnitude. Robotic missions can operate in extreme environments (Venus surface, outer planet radiation belts) and continue for decades, but require extensive pre-programming and cannot adapt to novel situations as effectively.",
+      "category": "space_exploration_strategy"
+    }
+  ]
+}

@@ -1,0 +1,144 @@
+{
+  "medium": [
+    {
+      "id": 31,
+      "difficulty": "medium",
+      "question": "What evidence supports the Big Bang Theory?",
+      "options": [
+        "Only fossil records",
+        "The expansion of the universe, cosmic microwave background radiation, and abundance of light elements", 
+        "Solar system formation",
+        "Black hole observations"
+      ],
+      "correct": 1,
+      "explanation": "The Big Bang Theory is supported by Hubble's observations of universal expansion, cosmic microwave background radiation, and the observed abundance of light elements like hydrogen and helium.",
+      "category": "cosmology"
+    },
+    {
+      "id": 32,
+      "difficulty": "medium",
+      "question": "How do astronomers measure the expansion of the universe?",
+      "options": [
+        "By counting stars",
+        "By observing the redshift of light from distant galaxies",
+        "By measuring planet sizes", 
+        "By studying moon phases"
+      ],
+      "correct": 1,
+      "explanation": "Astronomers use redshift measurements of distant galaxies to determine their recession velocities, proving universal expansion.",
+      "category": "cosmology"
+    },
+    {
+      "id": 33,
+      "difficulty": "medium",
+      "question": "Why is the James Webb Space Telescope more powerful than Hubble?",
+      "options": [
+        "It's closer to Earth",
+        "It observes mainly in infrared, has a much larger mirror, and can see farther back in time",
+        "It uses nuclear power",
+        "It has more computers"
+      ],
+      "correct": 1,
+      "explanation": "JWST's 6.5m infrared mirror and advanced instruments allow it to observe the early universe and see through cosmic dust better than Hubble.",
+      "category": "telescopes"
+    },
+    {
+      "id": 34,
+      "difficulty": "medium",
+      "question": "What role does dark energy play in the universe?",
+      "options": [
+        "It creates new stars",
+        "It is responsible for the accelerated expansion of the universe",
+        "It forms black holes",
+        "It powers telescopes"
+      ],
+      "correct": 1,
+      "explanation": "Dark energy is the mysterious force causing the universe's expansion to accelerate, making up about 68% of the universe.",
+      "category": "cosmology"
+    },
+    {
+      "id": 35,
+      "difficulty": "medium", 
+      "question": "How are stars formed from nebulae?",
+      "options": [
+        "They appear instantly",
+        "Gas and dust in nebulae collapse under gravity, forming protostars that eventually ignite nuclear fusion",
+        "They migrate from other galaxies",
+        "They split from existing stars"
+      ],
+      "correct": 1,
+      "explanation": "Star formation occurs when dense regions of gas and dust in nebulae collapse under gravity until temperatures become hot enough for nuclear fusion.",
+      "category": "stellar_physics"
+    },
+    {
+      "id": 36,
+      "difficulty": "medium",
+      "question": "What happens when a massive star dies?",
+      "options": [
+        "It becomes a planet",
+        "It may explode as a supernova, leaving behind a neutron star or black hole",
+        "It just disappears", 
+        "It becomes a comet"
+      ],
+      "correct": 1,
+      "explanation": "Massive stars end their lives in spectacular supernova explosions, leaving behind either neutron stars or black holes depending on their mass.",
+      "category": "stellar_physics"
+    },
+    {
+      "id": 37,
+      "difficulty": "medium",
+      "question": "What is stellar nucleosynthesis?",
+      "options": [
+        "Star navigation",
+        "It is the process by which stars fuse elements inside their cores, creating heavier elements",
+        "Star destruction",
+        "Star classification"
+      ],
+      "correct": 1,
+      "explanation": "Stellar nucleosynthesis is the nuclear fusion process in stars that creates heavier elements from lighter ones, enriching the universe.",
+      "category": "stellar_physics"
+    },
+    {
+      "id": 38,
+      "difficulty": "medium",
+      "question": "What is an exoplanet?",
+      "options": [
+        "A former planet", 
+        "A planet orbiting a star outside our solar system",
+        "A very large planet",
+        "A planet without moons"
+      ],
+      "correct": 1,
+      "explanation": "An exoplanet is any planet that orbits a star other than our Sun, thousands of which have been discovered.",
+      "category": "exoplanets"
+    },
+    {
+      "id": 39,
+      "difficulty": "medium",
+      "question": "Why was the Hubble Space Telescope placed in orbit?",
+      "options": [
+        "To be closer to stars",
+        "To avoid atmospheric distortion and capture clearer images of space",
+        "To save money",
+        "To study the Moon better"
+      ],
+      "correct": 1,
+      "explanation": "Placing Hubble above Earth's atmosphere eliminates atmospheric turbulence and absorption, providing crystal-clear space observations.",
+      "category": "telescopes"
+    },
+    {
+      "id": 40,
+      "difficulty": "medium",
+      "question": "What is a neutron star?",
+      "options": [
+        "A new type of star",
+        "A super-dense remnant of a massive star left after a supernova explosion", 
+        "A star made of gas",
+        "A failed star"
+      ],
+      "correct": 1,
+      "explanation": "Neutron stars are incredibly dense stellar remnants where matter is compressed to nuclear density, formed in supernova explosions.",
+      "category": "stellar_physics"
+    }
+  ]
+}

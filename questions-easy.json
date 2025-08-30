@@ -1,0 +1,144 @@
+{
+  "easy": [
+    {
+      "id": 1,
+      "difficulty": "easy",
+      "question": "What does NASA stand for?",
+      "options": [
+        "National Aeronautics and Space Administration",
+        "National Aviation and Space Agency", 
+        "North American Space Association",
+        "National Aerospace and Satellite Administration"
+      ],
+      "correct": 0,
+      "explanation": "NASA stands for National Aeronautics and Space Administration, established in 1958.",
+      "category": "space_agencies"
+    },
+    {
+      "id": 2,
+      "difficulty": "easy",
+      "question": "Which country was the first to send a human into space?",
+      "options": [
+        "United States",
+        "Soviet Union (Russia)",
+        "China",
+        "Germany"
+      ],
+      "correct": 1,
+      "explanation": "The Soviet Union sent Yuri Gagarin into space on April 12, 1961, making him the first human in space.",
+      "category": "space_history"
+    },
+    {
+      "id": 3,
+      "difficulty": "easy", 
+      "question": "What is the name of the first artificial satellite launched into space?",
+      "options": [
+        "Explorer 1",
+        "Sputnik 1",
+        "Telstar",
+        "Vanguard 1"
+      ],
+      "correct": 1,
+      "explanation": "Sputnik 1 was launched by the Soviet Union on October 4, 1957, marking the beginning of the space age.",
+      "category": "space_history"
+    },
+    {
+      "id": 4,
+      "difficulty": "easy",
+      "question": "Which telescope has captured some of the deepest images of the universe?",
+      "options": [
+        "James Webb Space Telescope",
+        "Hubble Space Telescope",
+        "Spitzer Space Telescope",
+        "Kepler Space Telescope"
+      ],
+      "correct": 1,
+      "explanation": "Hubble Space Telescope has captured iconic deep field images showing galaxies billions of light-years away.",
+      "category": "telescopes"
+    },
+    {
+      "id": 5,
+      "difficulty": "easy",
+      "question": "Which telescope is considered the successor to Hubble?",
+      "options": [
+        "Spitzer Space Telescope",
+        "Kepler Space Telescope", 
+        "James Webb Space Telescope",
+        "Chandra X-ray Observatory"
+      ],
+      "correct": 2,
+      "explanation": "The James Webb Space Telescope is designed as Hubble's successor, with enhanced infrared capabilities.",
+      "category": "telescopes"
+    },
+    {
+      "id": 6,
+      "difficulty": "easy",
+      "question": "What is the main function of the International Space Station (ISS)?",
+      "options": [
+        "Space tourism",
+        "A space laboratory for research and experiments",
+        "Satellite repair",
+        "Moon mission preparation"
+      ],
+      "correct": 1,
+      "explanation": "The ISS serves as a microgravity laboratory where astronauts conduct scientific research and experiments.",
+      "category": "space_stations"
+    },
+    {
+      "id": 7,
+      "difficulty": "easy",
+      "question": "Which planet has been explored by rovers like Curiosity and Perseverance?",
+      "options": [
+        "Venus",
+        "Mars",
+        "Jupiter", 
+        "Saturn"
+      ],
+      "correct": 1,
+      "explanation": "NASA's Curiosity and Perseverance rovers have been exploring the surface of Mars to study its geology and search for signs of past life.",
+      "category": "planetary_exploration"
+    },
+    {
+      "id": 8,
+      "difficulty": "easy",
+      "question": "What is our galaxy called?",
+      "options": [
+        "Andromeda Galaxy",
+        "The Milky Way",
+        "Whirlpool Galaxy",
+        "Magellanic Clouds"
+      ],
+      "correct": 1,
+      "explanation": "Our galaxy is called the Milky Way, a barred spiral galaxy containing over 100 billion stars.",
+      "category": "astronomy_basics"
+    },
+    {
+      "id": 9,
+      "difficulty": "easy",
+      "question": "What theory explains the origin of the universe?",
+      "options": [
+        "Steady State Theory",
+        "The Big Bang Theory",
+        "Multiverse Theory",
+        "Cyclic Model"
+      ],
+      "correct": 1,
+      "explanation": "The Big Bang Theory explains how the universe began from a singularity and has been expanding ever since.",
+      "category": "cosmology"
+    },
+    {
+      "id": 10,
+      "difficulty": "easy",
+      "question": "Who was the first human to step on the Moon?",
+      "options": [
+        "Buzz Aldrin",
+        "Neil Armstrong", 
+        "Michael Collins",
+        "John Glenn"
+      ],
+      "correct": 1,
+      "explanation": "Neil Armstrong was the first person to walk on the Moon during the Apollo 11 mission on July 20, 1969.",
+      "category": "space_history"
+    }
+  ]
+}

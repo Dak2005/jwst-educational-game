@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON Data Testing - JWST Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .button {
+            background-color: #1FB8CD;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+            font-size: 14px;
+        }
+        
+        .button:hover {
+            background-color: #158fa0;
+        }
+        
+        .output {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            padding: 15px;
+            margin-top: 10px;
+            white-space: pre-wrap;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .status {
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        
+        .status.loading {
+            background-color: #fff3cd;
+            border: 1px solid #ffeaa7;
+            color: #856404;
+        }
+        
+        .status.success {
+            background-color: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+        }
+        
+        .status.error {
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .question-card {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #dee2e6;
+            margin-bottom: 10px;
+        }
+        
+        .question-title {
+            font-weight: bold;
+            color: #1FB8CD;
+            margin-bottom: 10px;
+        }
+        
+        .correct-answer {
+            color: #28a745;
+            font-weight: bold;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        
+        .stat-card {
+            background: linear-gradient(135deg, #1FB8CD, #158fa0);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        .stat-label {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔭 JWST Educational Game - JSON Data Testing</h1>
+    
+    <div id="status" class="status loading">
+        Loading JSON data...
+    </div>
+
+    <div class="grid">
+        <!-- JSON Loading Section -->
+        <div class="container">
+            <h2>📁 JSON Data Loading</h2>
+            <button class="button" onclick="loadGameData()">Load Game Data</button>
+            <button class="button" onclick="loadEasyQuestions()">Load Easy Questions</button>
+            <button class="button" onclick="loadMediumQuestions()">Load Medium Questions</button>
+            <button class="button" onclick="loadAllData()">Load All Data</button>
+            <div id="loading-output" class="output"></div>
+        </div>
+
+        <!-- Questions Output Section -->
+        <div class="container">
+            <h2>❓ Questions Output</h2>
+            <button class="button" onclick="showEasyQuestions()">Show Easy Questions</button>
+            <button class="button" onclick="showMediumQuestions()">Show Medium Questions</button>
+            <button class="button" onclick="showQuestionsByCategory()">Filter by Category</button>
+            <button class="button" onclick="showRandomQuestion()">Random Question</button>
+            <div id="questions-output" class="output"></div>
+        </div>
+
+        <!-- Game Data Output Section -->
+        <div class="container">
+            <h2>🎮 Game Data Output</h2>
+            <button class="button" onclick="showTelescopes()">Show Telescopes</button>
+            <button class="button" onclick="showAchievements()">Show Achievements</button>
+            <button class="button" onclick="showCosmicObjects()">Show Cosmic Objects</button>
+            <button class="button" onclick="showDifficultySettings()">Show Difficulty Settings</button>
+            <div id="gamedata-output" class="output"></div>
+        </div>
+
+        <!-- User Progress Section -->
+        <div class="container">
+            <h2>📊 User Progress & Stats</h2>
+            <button class="button" onclick="generateMockProgress()">Generate Mock Progress</button>
+            <button class="button" onclick="exportProgress()">Export Progress JSON</button>
+            <button class="button" onclick="showGameStats()">Show Game Statistics</button>
+            <button class="button" onclick="downloadProgress()">Download Progress File</button>
+            <div id="progress-output" class="output"></div>
+        </div>
+    </div>
+
+    <!-- Full Data Display Section -->
+    <div class="container">
+        <h2>📋 Complete Data Overview</h2>
+        <div class="stats-grid" id="stats-overview"></div>
+        <div id="data-overview" class="output"></div>
+    </div>
+
+    <script>
+        // Global data storage
+        let gameData = null;
+        let easyQuestions = null;
+        let mediumQuestions = null;
+        let allQuestions = [];
+        let userProgress = {
+            totalScore: 350,
+            level: 'medium',
+            achievements: ['first_focus', 'quiz_master'],
+            gamesPlayed: 5
+        };
+
+        // Utility function to display output
+        function displayOutput(elementId, content, isError = false) {
+            const element = document.getElementById(elementId);
+            if (isError) {
+                element.innerHTML = `<span style="color: red;">ERROR: ${content}</span>`;
+            } else {
+                element.textContent = typeof content === 'object' ? 
+                    JSON.stringify(content, null, 2) : content;
+            }
+        }
+
+        // Update status
+        function updateStatus(message, type = 'loading') {
+            const statusEl = document.getElementById('status');
+            statusEl.textContent = message;
+            statusEl.className = `status ${type}`;
+        }
+
+        // JSON Loading Functions
+        async function loadGameData() {
+            try {
+                const response = await fetch('game-data.json');
+                gameData = await response.json();
+                displayOutput('loading-output', `Game data loaded successfully!\n\nTelescopes: ${gameData.telescopes.length}\nAchievements: ${gameData.achievements.length}\nCosmic Objects: ${gameData.cosmic_objects.length}`);
+                updateStatus('Game data loaded successfully!', 'success');
+                updateOverview();
+            } catch (error) {
+                displayOutput('loading-output', `Failed to load game-data.json: ${error.message}`, true);
+                updateStatus('Failed to load game data', 'error');
+            }
+        }
+
+        async function loadEasyQuestions() {
+            try {
+                const response = await fetch('questions-easy.json');
+                const data = await response.json();
+                easyQuestions = data.easy;
+                allQuestions = [...(allQuestions.filter(q => q.difficulty !== 'easy')), ...easyQuestions];
+                displayOutput('loading-output', `Easy questions loaded!\n\nCount: ${easyQuestions.length} questions\n\nFirst question: ${easyQuestions[0]?.question}`);
+                updateOverview();
+            } catch (error) {
+                displayOutput('loading-output', `Failed to load questions-easy.json: ${error.message}`, true);
+            }
+        }
+
+        async function loadMediumQuestions() {
+            try {
+                const response = await fetch('questions-medium.json');
+                const data = await response.json();
+                mediumQuestions = data.medium;
+                allQuestions = [...(allQuestions.filter(q => q.difficulty !== 'medium')), ...mediumQuestions];
+                displayOutput('loading-output', `Medium questions loaded!\n\nCount: ${mediumQuestions.length} questions\n\nFirst question: ${mediumQuestions[0]?.question}`);
+                updateOverview();
+            } catch (error) {
+                displayOutput('loading-output', `Failed to load questions-medium.json: ${error.message}`, true);
+            }
+        }
+
+        async function loadAllData() {
+            updateStatus('Loading all JSON data...', 'loading');
+            try {
+                await Promise.all([loadGameData(), loadEasyQuestions(), loadMediumQuestions()]);
+                updateStatus('All data loaded successfully!', 'success');
+                displayOutput('loading-output', `All data loaded successfully!\n\nTotal Questions: ${allQuestions.length}\nGame Data Objects: ${Object.keys(gameData || {}).length}\n\nReady for testing!`);
+            } catch (error) {
+                updateStatus('Failed to load some data', 'error');
+            }
+        }
+
+        // Questions Output Functions
+        function showEasyQuestions() {
+            if (!easyQuestions) {
+                displayOutput('questions-output', 'Please load easy questions first!', true);
+                return;
+            }
+            
+            const output = easyQuestions.slice(0, 3).map((q, index) => 
+                `Q${index + 1}: ${q.question}\n` +
+                `Options: ${q.options.join(', ')}\n` +
+                `Correct Answer: ${q.options[q.correct]}\n` +
+                `Category: ${q.category}\n` +
+                `Explanation: ${q.explanation}\n`
+            ).join('\n---\n');
+            
+            displayOutput('questions-output', `Showing first 3 easy questions:\n\n${output}\n\nTotal Easy Questions: ${easyQuestions.length}`);
+        }
+
+        function showMediumQuestions() {
+            if (!mediumQuestions) {
+                displayOutput('questions-output', 'Please load medium questions first!', true);
+                return;
+            }
+            
+            const output = mediumQuestions.slice(0, 3).map((q, index) => 
+                `Q${index + 1}: ${q.question}\n` +
+                `Options: ${q.options.join(', ')}\n` +
+                `Correct Answer: ${q.options[q.correct]}\n` +
+                `Category: ${q.category}\n`
+            ).join('\n---\n');
+            
+            displayOutput('questions-output', `Showing first 3 medium questions:\n\n${output}\n\nTotal Medium Questions: ${mediumQuestions.length}`);
+        }
+
+        function showQuestionsByCategory() {
+            if (allQuestions.length === 0) {
+                displayOutput('questions-output', 'Please load questions first!', true);
+                return;
+            }
+            
+            const categories = {};
+            allQuestions.forEach(q => {
+                if (!categories[q.category]) categories[q.category] = [];
+                categories[q.category].push(q);
+            });
+            
+            const output = Object.entries(categories)
+                .map(([category, questions]) => 
+                    `${category.toUpperCase()}: ${questions.length} questions\n` +
+                    questions.slice(0, 2).map(q => `  - ${q.question}`).join('\n')
+                ).join('\n\n');
+            
+            displayOutput('questions-output', `Questions by Category:\n\n${output}`);
+        }
+
+        function showRandomQuestion() {
+            if (allQuestions.length === 0) {
+                displayOutput('questions-output', 'Please load questions first!', true);
+                return;
+            }
+            
+            const randomQ = allQuestions[Math.floor(Math.random() * allQuestions.length)];
+            const output = `Random Question (${randomQ.difficulty.toUpperCase()}):\n\n` +
+                `${randomQ.question}\n\n` +
+                `Options:\n${randomQ.options.map((opt, i) => `${i + 1}. ${opt}`).join('\n')}\n\n` +
+                `Correct Answer: ${randomQ.options[randomQ.correct]}\n` +
+                `Category: ${randomQ.category}\n` +
+                `Explanation: ${randomQ.explanation}`;
+            
+            displayOutput('questions-output', output);
+        }
+
+        // Game Data Output Functions
+        function showTelescopes() {
+            if (!gameData) {
+                displayOutput('gamedata-output', 'Please load game data first!', true);
+                return;
+            }
+            
+            const output = gameData.telescopes.map(t => 
+                `${t.name} (${t.shortName})\n` +
+                `Launch Year: ${t.launchYear}\n` +
+                `Type: ${t.type}\n` +
+                `Features: ${t.features.join(', ')}\n` +
+                `Color: ${t.color}\n`
+            ).join('\n---\n');
+            
+            displayOutput('gamedata-output', `Telescope Data:\n\n${output}`);
+        }
+
+        function showAchievements() {
+            if (!gameData) {
+                displayOutput('gamedata-output', 'Please load game data first!', true);
+                return;
+            }
+            
+            const output = gameData.achievements.map(a => 
+                `${a.icon} ${a.name}\n` +
+                `Description: ${a.description}\n` +
+                `Points: ${a.points}\n`
+            ).join('\n---\n');
+            
+            displayOutput('gamedata-output', `Achievement Data:\n\n${output}`);
+        }
+
+        function showCosmicObjects() {
+            if (!gameData) {
+                displayOutput('gamedata-output', 'Please load game data first!', true);
+                return;
+            }
+            
+            const output = gameData.cosmic_objects.map(obj => 
+                `${obj.name}\n` +
+                `Type: ${obj.type}\n` +
+                `Distance: ${obj.distance}\n` +
+                `Description: ${obj.description}\n`
+            ).join('\n---\n');
+            
+            displayOutput('gamedata-output', `Cosmic Objects:\n\n${output}`);
+        }
+
+        function showDifficultySettings() {
+            if (!gameData) {
+                displayOutput('gamedata-output', 'Please load game data first!', true);
+                return;
+            }
+            
+            displayOutput('gamedata-output', gameData.difficulty_settings);
+        }
+
+        // User Progress Functions
+        function generateMockProgress() {
+            userProgress = {
+                totalScore: Math.floor(Math.random() * 1000) + 100,
+                level: ['easy', 'medium', 'hard'][Math.floor(Math.random() * 3)],
+                achievements: ['first_focus', 'quiz_master', 'telescope_expert'].slice(0, Math.floor(Math.random() * 3) + 1),
+                gamesPlayed: Math.floor(Math.random() * 20) + 1,
+                questionsAnswered: Math.floor(Math.random() * 100) + 10,
+                correctAnswers: Math.floor(Math.random() * 80) + 5,
+                timestamp: new Date().toISOString()
+            };
+            
+            displayOutput('progress-output', `Mock progress generated:\n\n${JSON.stringify(userProgress, null, 2)}`);
+        }
+
+        function exportProgress() {
+            const progressJSON = JSON.stringify(userProgress, null, 2);
+            displayOutput('progress-output', `Exported User Progress:\n\n${progressJSON}`);
+        }
+
+        function showGameStats() {
+            const stats = {
+                dataLoaded: {
+                    gameData: !!gameData,
+                    easyQuestions: !!easyQuestions,
+                    mediumQuestions: !!mediumQuestions,
+                    totalQuestions: allQuestions.length
+                },
+                questionStats: {
+                    totalQuestions: allQuestions.length,
+                    easyQuestions: easyQuestions?.length || 0,
+                    mediumQuestions: mediumQuestions?.length || 0,
+                    categories: [...new Set(allQuestions.map(q => q.category))].length
+                },
+                userProgress: userProgress
+            };
+            
+            displayOutput('progress-output', stats);
+        }
+
+        function downloadProgress() {
+            const progressJSON = JSON.stringify(userProgress, null, 2);
+            const blob = new Blob([progressJSON], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'jwst-game-progress.json';
+            a.click();
+            URL.revokeObjectURL(url);
+            
+            displayOutput('progress-output', 'Progress file downloaded as "jwst-game-progress.json"');
+        }
+
+        // Overview update function
+        function updateOverview() {
+            const statsEl = document.getElementById('stats-overview');
+            const dataEl = document.getElementById('data-overview');
+            
+            if (statsEl) {
+                statsEl.innerHTML = `
+                    <div class="stat-card">
+                        <div class="stat-value">${allQuestions.length}</div>
+                        <div class="stat-label">Total Questions</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">${gameData?.telescopes?.length || 0}</div>
+                        <div class="stat-label">Telescopes</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">${gameData?.achievements?.length || 0}</div>
+                        <div class="stat-label">Achievements</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">${[...new Set(allQuestions.map(q => q.category))].length}</div>
+                        <div class="stat-label">Categories</div>
+                    </div>
+                `;
+            }
+            
+            if (dataEl) {
+                const overview = {
+                    loadedFiles: {
+                        gameData: !!gameData,
+                        easyQuestions: !!easyQuestions,
+                        mediumQuestions: !!mediumQuestions
+                    },
+                    questionCategories: [...new Set(allQuestions.map(q => q.category))],
+                    sampleData: {
+                        firstTelescope: gameData?.telescopes?.[0]?.name,
+                        firstAchievement: gameData?.achievements?.[0]?.name,
+                        randomQuestion: allQuestions[0]?.question?.substring(0, 50) + '...'
+                    }
+                };
+                dataEl.textContent = JSON.stringify(overview, null, 2);
+            }
+        }
+
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            updateStatus('Ready to load JSON data. Click "Load All Data" to begin.', 'loading');
+            updateOverview();
+        });
+    </script>
+</body>
+</html>
